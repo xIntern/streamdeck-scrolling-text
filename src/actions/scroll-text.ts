@@ -30,16 +30,45 @@ export class ScrollTextAction extends SingletonAction<ScrollTextSettings> {
     action.setTitle(this.scroller.getCurrentFrame());
   }
 
-  override onWillAppear(ev: WillAppearEvent<ScrollTextSettings>): void | Promise<void> {
+  private async fetchTitleFromAPI(): Promise<string | null> {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+      const data: any = await response.json();
+      return data.title || null;
+    } catch (e) {
+      console.error('Error fetching title from API:', e);
+      return null;
+    }
+  }
+
+  override async onWillAppear(ev: WillAppearEvent<ScrollTextSettings>): Promise<void> {
     this.lastSettings = ev.payload.settings;
-    this.setupScroller(ev.payload.settings, ev.action);
+    // Example: Fetch text from a demo API and set it as the scroll text
+    const title = await this.fetchTitleFromAPI();
+    if (title) {
+      const newSettings = { ...ev.payload.settings, text: title };
+      this.setupScroller(newSettings, ev.action);
+      return;
+    } else {
+      this.setupScroller(ev.payload.settings, ev.action);
+    }
   }
 
   override onDidReceiveSettings(ev: DidReceiveSettingsEvent<ScrollTextSettings>): void | Promise<void> {
-    this.lastSettings = ev.payload.settings;
     if (this.scroller && typeof ev.payload.settings.pauseAfterScroll === 'number') {
       this.scroller.setPauseAfterScroll(ev.payload.settings.pauseAfterScroll);
     }
+    if (this.scroller && ev.payload.settings.text === '') {
+      this.fetchTitleFromAPI().then((title) => {
+        if (title) {
+          const newSettings = { ...ev.payload.settings, text: title };
+          this.setupScroller(newSettings, ev.action);
+          this.lastSettings = newSettings;
+          return;
+        }
+      });
+    }
+    this.lastSettings = ev.payload.settings;
     this.setupScroller(ev.payload.settings, ev.action);
   }
 
