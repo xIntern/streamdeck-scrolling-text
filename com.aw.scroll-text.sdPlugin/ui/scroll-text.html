@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Scroll Text Settings</title>
+    <meta charset="utf-8" />
+    <script src="https://sdpi-components.dev/releases/v3/sdpi-components.js"></script>
+</head>
+<body>
+    <sdpi-item label="Scroll Text">
+        <sdpi-textfield setting="text" placeholder="Enter text to scroll..."></sdpi-textfield>
+    </sdpi-item>
+    <sdpi-item label="Max visible characters">
+        <sdpi-range setting="windowSize" min="5" max="15" step="1" default="9" showlabels></sdpi-range>
+    </sdpi-item>
+    <sdpi-item label="Scroll Speed (ms per character)">
+        <sdpi-range setting="interval" min="50" max="1000" step="50" default="300" showlabels></sdpi-range>
+    </sdpi-item>
+    <sdpi-item label="Pause After Scroll (ms)">
+        <sdpi-range setting="pauseAfterScroll" min="0" max="3000" step="100" default="0" showlabels></sdpi-range>
+    </sdpi-item>
+    <sdpi-item label="Scroll Mode">
+        <sdpi-select setting="mode">
+            <option value="loop">Loop</option>
+            <option value="bounce">Bounce</option>
+        </sdpi-select>
+    </sdpi-item>
+    <sdpi-item label="Scroll Direction">
+        <sdpi-select setting="direction">
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+        </sdpi-select>
+    </sdpi-item>
+</body>
+</html> 

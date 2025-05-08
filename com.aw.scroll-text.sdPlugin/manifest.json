@@ -1,0 +1,47 @@
+{
+	"Name": "scroll-text",
+	"Version": "0.1.0.0",
+	"Author": "aw",
+	"Actions": [
+		{
+			"Name": "Scroll Text",
+			"UUID": "com.aw.scroll-text.scroll",
+			"Icon": "imgs/actions/scroll/icon",
+			"Tooltip": "Displays scrolling text on the button.",
+			"PropertyInspectorPath": "ui/scroll-text.html",
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/scroll/key",
+					"TitleAlignment": "middle"
+				}
+			]
+		}
+	],
+	"Category": "scroll-text",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"CodePath": "bin/plugin.js",
+	"Description": "Scrolling text test",
+	"Icon": "imgs/plugin/marketplace",
+	"SDKVersion": 2,
+	"Software": {
+		"MinimumVersion": "6.4"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		},
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "20",
+		"Debug": "enabled"
+	},
+	"UUID": "com.aw.scroll-text"
+}
