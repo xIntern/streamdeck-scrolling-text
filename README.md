@@ -2,6 +2,8 @@
 
 A simple Stream Deck plugin that displays scrolling text on a key. Supports loop and bounce modes, adjustable speed, direction, and pause after each scroll.
 
+### This is a POC and may at any time be changed or removed without notice
+
 ## Features
 - Scrolls custom text on a Stream Deck key
 - Loop or bounce scrolling modes
